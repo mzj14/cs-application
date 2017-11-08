@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> self.is_rejected? </title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <section class="hero is-primary is-bold">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        |school| self.is_rejected_by? school
+                    </h1>
+
+                <table class="table is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>School.Program</th>
+                            <th>Status</th>
+                            <th>Last update</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for prog in site.categories %}
+
+                        <tr>
+                            <td>{{ prog[0] }}</td>
+                            {% assign last_status = prog[1] | map: "status" | compact | first %}
+                            <td><span class="tag 
+                                    {% case last_status %}
+                                        {% when 'admitted' %}
+                                        is-success
+                                        {% when 'rejected' %}
+                                        is-danger
+                                        {% else %}
+                                        is-light
+                                    {% endcase %}
+                                    ">
+                                    {% case last_status %}
+                                        {% when 'admitted' %}
+                                            Admitted
+                                        {% when 'rejected' %}
+                                            Rejected
+                                        {% else %}
+                                            N/A
+                                    {% endcase %}
+                            </span></td>
+                            <td>{% assign last_upd = prog[1] | first  %}
+                                {{ last_upd.date }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </section>
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Latest updates
+                    </h1>
+                    <div class="level">
+                        <a href="/feed.xml">
+                            <span class="icon">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                            View complete history by subscribing feeds
+                    </a>
+                </div>
+                    {% for post in site.posts limit:5 %}
+                    <div class="card">
+                        <div class="card-content">
+                            <p class="title">
+                            {{ post.title }}
+                            </p>
+                            <p class="subtitle">
+                                {% if post.status == 'admitted' %}
+                                <span class="tag is-success">Admitted</span> by 
+                                {% endif %}
+                                {% if post.status == 'rejected' %}
+                                <span class="tag is-danger">Rejected</span> by 
+                                {% endif %}
+                                <strong>{{ post.categories | first }}</strong> - <time datetime="{{post.date}}">{{post.date}}</time>
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <strong>self.is_rejected?</strong> for 
+                    <a href="{{ site.author_url }}">{{site.author}}</a>.
+                    Originally created by <a href="https://github.com/htfy96">@htfy96</a>.
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
