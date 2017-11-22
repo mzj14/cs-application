@@ -35,6 +35,10 @@
                                         is-success
                                         {% when 'rejected' %}
                                         is-danger
+                                        {% when 'abandoned' %}
+                                        is-dark
+                                        {% when 'submitted' %}
+                                        is-info
                                         {% else %}
                                         is-light
                                     {% endcase %}
@@ -44,6 +48,10 @@
                                             Admitted
                                         {% when 'rejected' %}
                                             Rejected
+                                        {% when 'abandoned' %}
+                                            Abandoned
+                                        {% when 'submitted' %}
+                                            Submitted
                                         {% else %}
                                             N/A
                                     {% endcase %}
@@ -87,6 +95,9 @@
                                 {% endif %}
                                 <strong>{{ post.categories | first }}</strong> - <time datetime="{{post.date}}">{{post.date}}</time>
                             </p>
+                            {% if post.content %}
+                            <p class="content">{{ post.content }}</p>
+                            {% endif %}
                         </div>
                     </div>
                     {% endfor %}
