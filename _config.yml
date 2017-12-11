@@ -13,14 +13,14 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: self.is_rejected?
-email: vicluo96@gmail.com
+title: 2018-fall-CS-Master-Application
+email: mazijun2017@outlook.com
 description: >- # this means to ignore newlines until "baseurl:"
-    self.is_rejected_by? school
+    Bill borad for 2018 fall CS master program application.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-author: htfy96
-author_url: "https://github.com/htfy96"
+author: mzj14
+author_url: "https://github.com/mzj14"
 
 # Build settings
 markdown: kramdown

@@ -1,117 +1,91 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title> self.is_rejected? </title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-    <body>
-        <section class="hero is-primary is-bold">
-            <div class="hero-body">
-                <div class="container">
-                    <h1 class="title">
-                        |school| self.is_rejected_by? school
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> 2018-fall-CS-Master-Application </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <section class="hero is-info is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                        2018-fall-CS-Master-Application
                     </h1>
 
                 <table class="table is-fullwidth">
                     <thead>
                         <tr>
-                            <th>School.Program</th>
+                            <th>No.</th>
+                            <th>School</th>
+                            <th>Program</th>
                             <th>Status</th>
-                            <th>Last update</th>
+                            <th>Last Update</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for prog in site.categories %}
-
+                        {% for record in site.tags.record %}
                         <tr>
-                            <td>{{ prog[0] }}</td>
-                            {% assign last_status = prog[1] | map: "status" | compact | first %}
-                            <td><span class="tag 
-                                    {% case last_status %}
-                                        {% when 'admitted' %}
+                            <td>#{{ forloop.index }}</td>
+                            <td>{{ record.school }}</td>
+                            <td>{{ record.program }}</td>
+                            <td><span class="tag
+                                    {% case record.status %}
+                                        {% when 'Admitted' %}
                                         is-success
-                                        {% when 'rejected' %}
+                                        {% when 'Rejected' %}
                                         is-danger
-                                        {% when 'abandoned' %}
+                                        {% when 'Abandoned' %}
                                         is-dark
-                                        {% when 'submitted' %}
+                                        {% when 'Submitted' %}
                                         is-info
                                         {% else %}
                                         is-light
                                     {% endcase %}
                                     ">
-                                    {% case last_status %}
-                                        {% when 'admitted' %}
-                                            Admitted
-                                        {% when 'rejected' %}
-                                            Rejected
-                                        {% when 'abandoned' %}
-                                            Abandoned
-                                        {% when 'submitted' %}
-                                            Submitted
-                                        {% else %}
-                                            N/A
-                                    {% endcase %}
-                            </span></td>
-                            <td>{% assign last_upd = prog[1] | first  %}
-                                {{ last_upd.date }}
-                            </td>
-                        </tr>
+                                    {{ record.status }}</td>
+                            <td>{{ record.date | date: "%Y-%m-%d"}}</td>
+                          </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-                </div>
             </div>
-        </section>
-        <section class="hero">
-            <div class="hero-body">
-                <div class="container">
-                    <h1 class="title">
-                        Latest updates
-                    </h1>
-                    <div class="level">
-                        <a href="./feed.xml">
-                            <span class="icon">
-                                <i class="fa fa-rss"></i>
-                            </span>
-                            View complete history by subscribing feeds
-                    </a>
-                </div>
-                    {% for post in site.posts limit:5 %}
-                    <div class="card">
-                        <div class="card-content">
-                            <p class="title">
-                            {{ post.title }}
-                            </p>
-                            <p class="subtitle">
-                                {% if post.status == 'admitted' %}
-                                <span class="tag is-success">Admitted</span> by 
-                                {% endif %}
-                                {% if post.status == 'rejected' %}
-                                <span class="tag is-danger">Rejected</span> by 
-                                {% endif %}
-                                <strong>{{ post.categories | first }}</strong> - <time datetime="{{post.date}}">{{post.date}}</time>
-                            </p>
-                            {% if post.content %}
-                            <p class="content">{{ post.content }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
-        <footer class="footer">
+        </div>
+    </section>
+    <section class="hero">
+        <div class="hero-body">
             <div class="container">
-                <div class="content has-text-centered">
-                    <strong>self.is_rejected?</strong> for 
-                    <a href="{{ site.author_url }}">{{site.author}}</a>.
-                    Originally created by <a href="https://github.com/htfy96">@htfy96</a>.
-                </div>
+                <h1 class="title">
+                    Latest Updates
+                </h1>
+            {% for post in site.tags.poster limit:8 %}
+            <div class="card">
+                <div class="card-content">
+                    <p class="title">
+                        {{ post.title }}
+                    </p>
+                    <p class="subtitle">
+                        {{ post.date | date: "%Y-%m-%d"}}
+                    </p>
+                    <p class="content">{{ post.content }}</p>
             </div>
-        </footer>
-    </body>
+        </div>
+        {% endfor %}
+        </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered">
+                <strong>2018-fall-CS-Master-Application</strong> for
+                <a href="{{ site.author_url }}">{{site.author}}</a>. Originally created by <a href="https://github.com/htfy96">@htfy96</a>.
+            </div>
+        </div>
+    </footer>
+</body>
+
 </html>
