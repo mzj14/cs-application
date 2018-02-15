@@ -2,6 +2,6 @@
 tag: record
 school: Princeton University
 program: M.S. in Engineering
-status: Submitted
-date: 2017-12-11
+status: Rejected
+date: 2018-02-14
 ---
