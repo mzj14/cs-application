@@ -25,6 +25,7 @@
                             <th>Program</th>
                             <th>Status</th>
                             <th>Last Update</th>
+                            <th>Decision Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,6 +50,7 @@
                                     ">
                                     {{ record.status }}</td>
                             <td>{{ record.date | date: "%Y-%m-%d"}}</td>
+                            <td>{{ record.decision | date: "%Y-%m-%d"}}
                           </tr>
                         {% endfor %}
                     </tbody>
