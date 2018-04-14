@@ -44,6 +44,8 @@
                                         is-dark
                                         {% when 'Submitted' %}
                                         is-info
+                                        {% when 'Funded' %}
+                                        is-warning
                                         {% else %}
                                         is-light
                                     {% endcase %}
@@ -64,7 +66,7 @@
                 <h1 class="title">
                     Latest Updates
                 </h1>
-            {% for post in site.tags.poster limit:8 %}
+            {% for post in site.tags.poster %}
             <div class="card">
                 <div class="card-content">
                     <p class="title">
